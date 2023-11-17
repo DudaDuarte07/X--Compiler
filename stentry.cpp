@@ -1,4 +1,4 @@
-#include "strenty.h"
+#include "stentry.h"
 
 STEntry::STEntry()
 {}
@@ -9,7 +9,7 @@ STEntry::STEntry(Token* tok)
     reserved = false;
 }
 
-STEntry::STEntry(Token* tok, bool res)
+STEntry:: STEntry(Token* tok, bool res)
 {
     token = tok;
     reserved = res;

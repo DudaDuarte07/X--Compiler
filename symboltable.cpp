@@ -10,17 +10,7 @@ SymbolTable::SymbolTable(SymbolTable* p)
     parent = p;
 }
 
-bool
-SymbolTable::add(STEntry* t)
-{
-    if (!(symbols.find(t->token->lexeme) == symbols.end()))
-        return false;
-    
-    symbols.insert({t->token->lexeme,t});
-    return true;
-}
-
-bool
+bool 
 SymbolTable::remove(string name)
 {
     return symbols.erase(name) != 0;
@@ -35,10 +25,10 @@ SymbolTable::clear()
 bool
 SymbolTable::isEmpty()
 {
-    symbols.empty();
+    return symbols.empty();
 }
 
-STEnty*
+STEntry*
 SymbolTable::get(string name)
 {
     SymbolTable* table = this;
