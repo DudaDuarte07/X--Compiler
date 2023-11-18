@@ -1,0 +1,7 @@
+Alunos/colaboradores: Angelo Henrique Peres Cestari Junior - 2021.1905.006-3
+                      Guilherme de Araújo Brandão - 2021.1905.025-0
+                      Maria Eduarda de Paula Duare - 2021.1905.061-6
+
+Para executar o código basta rodar na shell: g++ *.cpp -o xpp_xompiler
+                                             ./xpp_compiler nomedoteste.xpp
+
