@@ -17,3 +17,5 @@ Este é um compilador para a linguagem X++ descrito no livro "Como construir um 
 Algumas alterações foram feitas no idioma e o arquivo utilizado encontra-se nesta pasta com o nome "GramaticaX++".
 Para iniciar o projeto, retiramos a recursão esquerda desta gramática e o arquivo com a remoção também pode ser encontrado nesta pasta com o nome "GramaticaSemRecursao".
 O trabalho foi feito em C/C++, nesta pasta estão alguns testes e no arquivo "INFOS" você encontrará os nomes dos participantes/colaboradores e o comando de como executar o código.
+
+*** Tentamos fazer a implementação da tabela de simbolos no código os códigos foram feitos mas a implementação não foi efetivada de forma correta.
