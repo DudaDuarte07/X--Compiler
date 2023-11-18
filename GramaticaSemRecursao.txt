@@ -1,0 +1,190 @@
+
+             Program -> ClassList
+                      | ϵ
+           
+           ClassList -> ClassDecl ClassList'
+          
+           ClassDecl -> class ID ClassDecl'
+          
+           ClassBody -> { VarDeclListOpt ConstructDeclListOpt MethodDeclListOpt }
+      
+      VarDeclListOpt -> VarDeclList
+                      | ϵ
+        
+         VarDeclList -> VarDecl VarDeclList'
+            
+          VarDecl -> Type VarDecl'
+          
+          VarDeclOpt -> , ID VarDeclOpt
+                      | ϵ
+                
+                Type -> int
+                      | string
+                      | ID
+
+ConstructDeclListOpt -> ConstructDeclList
+                      | ϵ
+   
+   ConstructDeclList -> ConstructDecl ConstructDeclList'
+      
+       ConstructDecl -> constructor MethodBody
+   
+   *MethodDeclListOpt -> MethodDeclList
+                      | ϵ
+      
+      *MethodDeclList -> MethodDecl MethodDeclList'
+          
+          *MethodDecl -> int MethodDecl'
+                      | string MethodDecl'
+                      | ID MethodDecl'
+          
+          MethodBody -> ( ParamListOpt ) { StatementsOpt }
+        
+        ParamListOpt -> ParamList
+                      | ϵ
+           
+           ParamList -> Param ParamList'
+              
+               Param -> int Param'
+                      | string Param'
+                      | ID Param'
+       
+       StatementsOpt -> Statements   
+                      | ϵ
+         
+          Statements -> Statement Statements'
+             
+              LValue -> ID LValue'
+           
+           AtribStat -> ID LValue' = AtribStat'
+          
+           Statement -> ID Statement'
+                      | int VarDecl' VarDeclList'
+                      | string VarDecl' VarDeclList'
+                      | print Expression ;
+                      | read LValue ;
+                      | return Expression ;
+                      | super ( ArgListOpt ) ;
+                      | if ( Expression ) { Statements } IfStat'
+                      | for ( AtribStatOpt ; ExpressionOpt ; AtribStatOpt ) { Statements }
+                      | break ;
+                      | ;
+            
+              *IfStat -> if ( Expression ) { Statements } IfStat'
+       
+        AtribStatOpt -> ID LValue' = AtribStat'
+                      | ϵ
+       
+       ExpressionOpt -> Expression
+                      | ϵ
+          
+          LValueComp -> . ID LValueComp'
+                      | ϵ
+          
+          Expression -> NumExpression Expression'
+     
+     AllocExpression -> new ID ( ArgListOpt )
+                      | int [ Expression ]
+                      | string [ Expression ]
+                      | ID [ Expression ]
+      
+       NumExpression -> Term NumExpression'
+                
+                Term -> UnaryExpression Term'
+     
+     UnaryExpression -> + Factor
+                      | - Factor
+              
+              Factor -> INTEGER_LITERAL
+                      | STRING_LITERAL
+                      | ID LValue'
+                      | ( Expression )
+          
+          ArgListOpt -> ArgList
+                      | ϵ
+             
+             ArgList -> + Factor Term' NumExpression' Expression' ArgList'
+                      | - Factor Term' NumExpression' Expression' ArgList'
+          
+          ClassList' -> class ID ClassDecl' ClassList'
+                      | ϵ
+          
+          ClassDecl' -> { VarDeclListOpt ConstructDeclListOpt MethodDeclListOpt }
+                      | extends ID ClassBody
+            
+            VarDecl' -> ID VarDeclOpt ;
+                      | [] ID VarDeclOpt ;
+         
+         MethodDecl' -> ID MethodBody
+                      | [] id MethodBody
+              
+              Param' -> ID
+                      | [] ID
+             
+             LValue' -> . ID LValueComp'
+                      | ϵ
+                      | [ Expression ] LValueComp
+         
+          AtribStat' -> + Factor Term' NumExpression' Expression'
+                      | - Factor Term' NumExpression' Expression'
+                      | new ID ( ArgListOpt )
+                      | int [ Expression ]
+                      | string [ Expression ]
+                      | ID [ Expression ]
+             
+             IfStat' -> ϵ
+                      | else { Statements }
+         
+         LValueComp' -> . ID LValueComp'
+                      | ϵ
+                      | [ Expression ] LValueComp
+         
+         Expression' -> ϵ
+                      | RelOp NumExpression
+     
+      NumExpression' -> + Term
+                      | - Term
+                      | ϵ
+              
+               Term' -> * UnaryExpression
+                      | / UnaryExpression
+                      | % UnaryExpression
+                      | ϵ
+        
+        VarDeclList' -> int VarDecl' VarDeclList'
+                      | string VarDecl' VarDeclList'
+                      | ID VarDecl' VarDeclList'
+                      | ϵ
+  
+  ConstructDeclList' -> constructor MethodBody ConstructDeclList'
+                      | ϵ
+    
+     MethodDeclList' -> int MethodDecl' MethodDeclList'
+                      | string MethodDecl' MethodDeclList'
+                      | ID MethodDecl' MethodDeclList'
+                      | ϵ
+          
+          ParamList' -> , Param ParamList'
+                      | ϵ
+         
+         Statements' -> ID Statement' Statements'
+                      | int VarDecl' VarDeclList' Statements'
+                      | string VarDecl' VarDeclList' Statements'
+                      | print Expression ; Statements'
+                      | read LValue ; Statements'
+                      | return Expression ; Statements'
+                      | super ( ArgListOpt ) ; Statements'
+                      | if ( Expression ) { Statements } IfStat' Statements'
+                      | for ( AtribStatOpt ; ExpressionOpt ; AtribStatOpt ) { Statements } Statements'
+                      | break ; Statements'
+                      | ; Statements'
+                      | ϵ
+           
+            ArgList' -> , Expression ArgList'
+                      | ϵ
+         
+          Statement' -> ID VarDeclOpt ; VarDeclList'
+                      | [] ID VarDeclOpt ; VarDeclList'
+                      | . ID LValueComp' = AtribStat' ;
+                      | = AtribStat' ;
+                      | [ Expression ] LValueComp = AtribStat' ;
