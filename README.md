@@ -1,6 +1,6 @@
 # X-Compiler
 This is an academic job compiler for X++ language.
-We built using Modern C++, were it can be receive a .xpp file, and process the syntax rules.
+We built using C++, where it can be receive a .xpp file, and process the syntax rules.
 
 Work requested in the compilers discipline at the computer engineering course.
 This is a compiler for the X++ language described in the book "Como construir um Compilador Utilizando Ferramentas Java" by Márcio Eduardo Delmaro.
