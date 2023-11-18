@@ -1,0 +1,5 @@
+class testando{
+    int a = 4;
+    int b = 2;
+    resultado = a + b
+}
